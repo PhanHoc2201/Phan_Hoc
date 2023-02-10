@@ -7,7 +7,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
-    public PlayerMovement playerMovement;
+    //public PlayerMovement playerMovement;
+    public Transform playerAttack;
     public Animator animatorTank;
     public Animator animatorExhaust;
     //public Renderer Exhaust;
@@ -39,8 +40,9 @@ public class PlayerController : MonoBehaviour
         this.Player = this.transform;
         this.animatorTank = this.transform.Find("Model").GetComponent<Animator>();
         this.animatorExhaust = this.transform.Find("Exhaust").GetComponent<Animator>();
-        this.playerMovement = this.transform.Find("PlayerMovement").GetComponent<PlayerMovement>();
+        //this.playerMovement = this.transform.Find("PlayerMovement").GetComponent<PlayerMovement>();
         this.Exhaust = this.transform.Find("Exhaust");
+        this.playerAttack = this.transform.Find("PlayerAttack");
     }
   
 }

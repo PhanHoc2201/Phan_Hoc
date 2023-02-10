@@ -9,8 +9,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isMoving;
  
     [SerializeField] private Vector3 movement;
-    [SerializeField] private float speed = 4f;
+    [SerializeField] private float speed = 3f;
 
+
+  
     public float MoveHorizontal;
 
     void Start()
@@ -24,9 +26,10 @@ public class PlayerMovement : MonoBehaviour
         this.Move();
         this.Animation();
         this.Turning();
-
-        /*this.MoveHorizontal = Input.GetAxis("Horizontal");
-        Debug.Log(this.MoveHorizontal);*/
+     
+        
+      
+    
 
     }
     public virtual void Move()
@@ -56,12 +59,12 @@ public class PlayerMovement : MonoBehaviour
         if (!this.IsMoving())
         {
             this.AniIdle();
-            Debug.Log("IDle");
+            //Debug.Log("IDle");
         }
         else
         {
             this.AniMove(); 
-            Debug.Log("Move");
+           // Debug.Log("Move");
         }
 
 
