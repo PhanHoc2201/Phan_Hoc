@@ -84,16 +84,17 @@ public class PlayerMovement : MonoBehaviour
     }
     protected virtual void Turning()
     {
-        Vector3 scale = PlayerController.instance.Player.localScale;
+       // Vector3 scale = PlayerController.instance.Player.localScale;
+
         if (Input.GetAxis("Horizontal") > 0)
         {
-            scale.x = 1;
+            PlayerController.instance.Player.localScale = new Vector3(1f, 1f, 1f);
         }
         if (Input.GetAxis("Horizontal") < 0)
         {
-            scale.x = -1;
+            PlayerController.instance.Player.localScale = new Vector3(-1f, 1f, 1f);
         }
-        PlayerController.instance.Player.localScale = scale;
+        //PlayerController.instance.Player.localScale = scale;
 
 
 

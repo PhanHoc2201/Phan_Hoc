@@ -44,5 +44,9 @@ public class PlayerController : MonoBehaviour
         this.Exhaust = this.transform.Find("Exhaust");
         this.playerAttack = this.transform.Find("PlayerAttack");
     }
-  
+
+    private void OnDrawGizmos()
+    {
+      
+    }
 }
