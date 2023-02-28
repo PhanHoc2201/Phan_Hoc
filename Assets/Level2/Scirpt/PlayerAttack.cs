@@ -36,9 +36,10 @@ public class PlayerAttack : MonoBehaviour
     public GameObject Bullet;// phải là 1 list. hoặc là list của cái khác và sau đó gán cho bullet 
                                                                             // đều oke.
     public Transform point_to_fire;
+    private bool opengame;
     public void Start()
     {
-
+        opengame = true;
     }
     // Update is called once per frame
     float rotationSpeed = 10;
@@ -47,12 +48,7 @@ public class PlayerAttack : MonoBehaviour
         if (PlayerAttack.playerat != null) return;
         PlayerAttack.playerat = this;
     }
-    private void FixedUpdate()
-    {
-       // txt.text = $"{Barrel.eulerAngles.z}"; 
-
-        
-    }
+    
     void Update()
     {
 
@@ -182,6 +178,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         B.GetComponent<Rigidbody2D>().AddForce(Force);
+       
     }
 
   
@@ -225,62 +222,103 @@ public class PlayerAttack : MonoBehaviour
         }
     */
 
+
+
     public int Trajectory_num = 100;
     private void OnDrawGizmos()
     {
-         //Debug.Log(PlayerController.instance.transform.position);
+        if (opengame)
+        { 
+            Vector2 Tam = new Vector2(PlayerController.instance.transform.position.x, PlayerController.instance.transform.position.y);
+
+            Gizmos.color = Color.red;
+            //ve vong tron quanh tam
+            for (int i = 0; i < R * 2; i++)
+            {
+
+
+                float x = -R + i + PlayerController.instance.transform.position.x;
+                float y = Mathf.Abs(Mathf.Sqrt(R * R - Mathf.Pow(x - Tam.x, 2))) + Tam.y;
+                Vector3 pos1 = new Vector3(x, y, 0);
+
+
+                x = x + 1;
+                y = Mathf.Abs(Mathf.Sqrt(R * R - Mathf.Pow(x - Tam.x, 2))) + Tam.y;
+                Vector3 pos2 = new Vector3(x, y, 0);
+                Gizmos.DrawLine(pos1, pos2);
+
+
+                float x1 = -R + i + PlayerController.instance.transform.position.x;
+                float y1 = -Mathf.Abs(Mathf.Sqrt(R * R - Mathf.Pow(x1 - Tam.x, 2))) + Tam.y;
+                Vector3 pos3 = new Vector3(x1, y1, 0);
+
+
+                x1 = x1 + 1;
+                y1 = -Mathf.Abs(Mathf.Sqrt(R * R - Mathf.Pow(x1 - Tam.x, 2))) + Tam.y;
+                Vector3 pos4 = new Vector3(x1, y1, 0);
+                Gizmos.DrawLine(pos3, pos4);
+
+            }
+            if (PlayerController.instance.transform.localScale.x == 1)
+            { 
+                for (int i = 0; i < Trajectory_num; i++)
+                {
+                    float time = i * 0.1f;
+                    float X = V * Mathf.Cos(Angle_Rad) * time;
+                    float Y = V * Mathf.Sin(Angle_Rad) * time - 0.5f * (10 * time * time);
+
+                    Vector3 pos1 = PlayerController.instance.transform.position + new Vector3(X, Y, 0);
+
+                    time = (i + 1) * 0.1f;
+                    X = V * Mathf.Cos(Angle_Rad) * time;
+                    Y = V * Mathf.Sin(Angle_Rad) * time - 0.5f * (10 * time * time);
+
+                    Vector3 pos2 = PlayerController.instance.transform.position + new Vector3(X, Y, 0);
+                    Gizmos.DrawLine(pos1, pos2);
+                }
+            
+            }
+            if (PlayerController.instance.transform.localScale.x == -1)
+            { 
+                for (int i = 0; i < Trajectory_num; i++)
+                {
+                    float time = i * 0.1f;
+                    float X = -V * Mathf.Cos(Angle_Rad) * time;
+                    float Y = V * Mathf.Sin(Angle_Rad) * time - 0.5f * (10 * time * time);
+
+                    Vector3 pos1 = PlayerController.instance.transform.position + new Vector3(X, Y, 0);
+
+                    time = (i + 1) * 0.1f;
+                    X =- V * Mathf.Cos(Angle_Rad) * time;
+                    Y = V * Mathf.Sin(Angle_Rad) * time - 0.5f * (10 * time * time);
+
+                    Vector3 pos2 = PlayerController.instance.transform.position + new Vector3(X, Y, 0);
+                    Gizmos.DrawLine(pos1, pos2);
+                }
+            
+            }
+
+            if (PlayerController.instance.transform.localScale.x == 1)
+            { 
+                float xx = Mathf.Cos(Angle_Rad) * (R) + PlayerController.instance.transform.position.x;
+                float yx = Mathf.Sin(Angle_Rad) * (R) + PlayerController.instance.transform.position.y;
+                Gizmos.DrawLine(PlayerController.instance.transform.position, new Vector3(xx, yx, 0));
+            }
+            if (PlayerController.instance.transform.localScale.x == -1)
+            { 
+                float xx = -Mathf.Cos(Angle_Rad) * (R) + PlayerController.instance.transform.position.x;
+                float yx = Mathf.Sin(Angle_Rad) * (R) + PlayerController.instance.transform.position.y;
+                Gizmos.DrawLine(PlayerController.instance.transform.position, new Vector3(xx, yx, 0));
+            }
+               
+        
+        }
+        
     }
     
 
 
-        //Vector2 Tam = new Vector2(PlayerController.instance.transform.position.x, PlayerController.instance.transform.position.y);
-       
-        /*Gizmos.color = Color.red;
-        for (int i = 0; i < R * 2; i++)
-        {
-
-
-            float x = -R + i + PlayerController.instance.transform.position.x;
-            float y = Mathf.Abs(Mathf.Sqrt(R * R - Mathf.Pow(x - Tam.x, 2))) + Tam.y;
-            Vector3 pos1 = new Vector3(x, y, 0);
-
-
-            x = x + 1;
-            y = Mathf.Abs(Mathf.Sqrt(R * R - Mathf.Pow(x - Tam.x, 2))) + Tam.y;
-            Vector3 pos2 = new Vector3(x, y, 0);
-            Gizmos.DrawLine(pos1, pos2);
-
-
-            float x1 = -R + i + PlayerController.instance.transform.position.x;
-            float y1 = -Mathf.Abs(Mathf.Sqrt(R * R - Mathf.Pow(x1 - Tam.x, 2))) + Tam.y;
-            Vector3 pos3 = new Vector3(x1, y1, 0);
-
-
-            x1 = x1 + 1;
-            y1 = -Mathf.Abs(Mathf.Sqrt(R * R - Mathf.Pow(x1 - Tam.x, 2))) + Tam.y;
-            Vector3 pos4 = new Vector3(x1, y1, 0);
-            Gizmos.DrawLine(pos3, pos4);
-
-        }
-
-        for (int i = 0; i < Trajectory_num; i++)
-        {
-            float time = i * 0.1f;
-            float X = V * Mathf.Cos(Angle_Rad) * time;
-            float Y = V * Mathf.Sin(Angle_Rad) * time - 0.5f * (10 * time * time);
-
-            Vector3 pos1 = PlayerController.instance.transform.position + new Vector3(X, Y, 0);
-
-            time = (i + 1) * 0.1f;
-            X = V * Mathf.Cos(Angle_Rad) * time;
-            Y = V * Mathf.Sin(Angle_Rad) * time - 0.5f * (10 * time * time);
-
-            Vector3 pos2 = PlayerController.instance.transform.position + new Vector3(X, Y, 0);
-            Gizmos.DrawLine(pos1, pos2);
-        }
-        float xx = Mathf.Cos(Angle_Rad) * (R) + PlayerController.instance.transform.position.x;
-        float yx = Mathf.Sin(Angle_Rad) * (R) + PlayerController.instance.transform.position.y;
-        Gizmos.DrawLine(PlayerController.instance.transform.position, new Vector3(xx, yx, 0));*/
+        
 
 
     

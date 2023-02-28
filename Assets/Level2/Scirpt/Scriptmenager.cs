@@ -23,4 +23,6 @@ public class Scriptmenager : MonoBehaviour
         Debug.Log(tele);
         Debug.Log(PlayerAttack.playerat.Bullet.name);
     }
+
+
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class Trigger_Enter2D_For_Default_Weapon : MonoBehaviour
@@ -16,9 +17,9 @@ public class Trigger_Enter2D_For_Default_Weapon : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.gameObject.tag== "Ground")
         {
             Destroy(gameObject);
             Instantiate(Explosion, transform.position, transform.rotation);
