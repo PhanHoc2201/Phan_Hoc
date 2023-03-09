@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6271708405480554582}
   - component: {fileID: 6271708405480554583}
   - component: {fileID: 6271708405480554581}
+  - component: {fileID: 591585099956803761}
   m_Layer: 0
   m_Name: Default _Weapon
   m_TagString: Untagged
@@ -156,6 +157,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Explosion: {fileID: 7667857973861545699, guid: 0a8e6ea0ac714c746bf1e84302b0d2b6, type: 3}
+--- !u!114 &591585099956803761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6271708405480554584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f2ff4fb1c0b7c44a43060b8fac4b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 6271708405480554583}
 --- !u!1 &7037356175815496013
 GameObject:
   m_ObjectHideFlags: 0

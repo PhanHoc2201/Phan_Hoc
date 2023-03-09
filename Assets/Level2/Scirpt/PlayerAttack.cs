@@ -159,7 +159,7 @@ public class PlayerAttack : MonoBehaviour
     public void Fire1()
     {
         // tạo lực bắn ra vien đạn.
-        GameObject B = Instantiate(Bullet, point_to_fire.position, Quaternion.identity);
+        GameObject B = Instantiate(Bullet, point_to_fire.position, point_to_fire.rotation);
         Vector3 Force = Vector3.zero;
         if (PlayerController.instance.transform.localScale.x == -1)
         {
@@ -178,6 +178,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         B.GetComponent<Rigidbody2D>().AddForce(Force);
+       // B.GetComponent<Rigidbody2D>().velocity = transform.right * V;
        
     }
 
